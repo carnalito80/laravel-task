@@ -41,7 +41,8 @@ class ImportJobs extends Command
         $file = base_path("resources/csvfiles/jobs.csv"); // hard-coded yes i know
 		$data = array_map('str_getcsv', file($file)); //throws the data into an array, i like this function =)
 		foreach($data as $row) { // foreach is very nice as opposed to the oldschool way of 0 to array.length
-			Job::updateOrCreate(['user_id' => $row[1], 'title' => $row[2], 'company' => $row[3], 'startdate' => date("Y-m-d",strtotime($row[4])), 'enddate' => date("Y-m-d",strtotime($row[5]))]); //convert the time format to MySQL compatible values
+			Job::updateOrCreate(['user_id' => $row[1], 'title' => $row[2], 'company' => $row[3], 'startdate' => date("Y-m-d H:i:s",strtotime($row[4])), 'enddate' => date("Y-m-d H:i:s",strtotime($row[5]))]); //convert the time format to MySQL compatible values
+			// echo "Start time: " .$row[4] . "    " . date("Y-m-d H:i:s",strtotime($row[4]));
 		}
     }
 }

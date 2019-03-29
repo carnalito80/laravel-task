@@ -19,8 +19,8 @@ class CreateJobsTable extends Migration
 			$table->foreign('user_id')->references('id')->on('candidates')->onDelete('cascade'); //foreign key id on candidates
 			$table->string('title');
 			$table->string('company');
-			$table->date('startdate');
-			$table->date('enddate');
+			$table->dateTime('startdate'); //these were wrong from the start :P date set the time to 00:00:00 not good
+			$table->dateTime('enddate');
         });
     }
 
